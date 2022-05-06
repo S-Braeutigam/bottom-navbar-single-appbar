@@ -91,6 +91,17 @@ class HomePageState extends State<HomePage> with RouteAware {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    for(BottomNavItem item in _navigatorKeys.keys) {
+      RouteObserver observer = _routeObservers[item]!;
+      //TODO: This fails because the current state of the NavigatorState does not exist at this point.
+      NavigatorState navState = _navigatorKeys[item]!.currentState!;
+      observer.subscribe(this, ModalRoute.of(navState.context)!);
+    }
+  }
+
+  @override
   void didPush() {
     super.didPush();
     print('New route has been pushed');
