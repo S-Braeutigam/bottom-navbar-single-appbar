@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> with RouteAware {
   int _currentIndex = 0;
-  BottomNavItem _currentItem = BottomNavItem.three;
+  BottomNavItem _currentItem = BottomNavItem.one;
 
   final Map<BottomNavItem, GlobalKey<NavigatorState>> _navigatorKeys = {
     BottomNavItem.one: GlobalKey<NavigatorState>(),
@@ -105,6 +105,7 @@ class HomePageState extends State<HomePage> with RouteAware {
   void didPush() {
     super.didPush();
     print('New route has been pushed');
+    //TODO: update the state of HomePage to trigger a rebuild and update the evaluation for displaying the back button in the AppBar
   }
 
   @override
